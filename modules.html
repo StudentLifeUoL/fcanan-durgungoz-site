@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Modules — Fatma Canan Durgungöz</title>
+<meta name="description" content="Teaching materials access for enrolled students.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-shell">
+
+  <aside class="sidebar">
+    <img class="portrait" src="images/fatma-canan-durgungoz.jpg" alt="Portrait of Fatma Canan Durgungöz" width="168" height="168">
+    <p class="sidebar-name"><a href="index.html">Fatma Canan Durgungöz</a></p>
+    <p class="sidebar-roles">Honorary Research Fellow, University of Bath</p>
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="background.html">Background</a>
+      <a href="publications.html">Publications</a>
+      <a href="projects.html">Projects</a>
+      <a href="engagement.html">Public Engagement</a>
+      <a href="working-papers.html">Working Papers</a>
+      <a href="modules.html" class="active">Modules</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="sidebar-contact">
+      <a href="mailto:cdurgungoz@mersin.edu.tr">Email</a>
+      <a href="https://scholar.google.com/citations?hl=en&amp;user=5FmXeowAAAAJ">Google Scholar</a>
+      <a href="https://orcid.org/0000-0001-8758-1861">ORCID</a>
+      <a href="https://www.researchgate.net/profile/Canan-Durgungoz">ResearchGate</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <span class="eyebrow">For Enrolled Students</span>
+    <h1>Modules</h1>
+    <p class="lede">Teaching materials for current modules are available here to enrolled students. Enter the access code you were given in class.</p>
+
+    <form id="gate-form" class="gate-form" autocomplete="off">
+      <label for="gate-code" class="gate-label">Access code</label>
+      <input type="text" id="gate-code" name="code" class="gate-input" placeholder="e.g. 7a49c-cc182" required>
+      <button type="submit" class="btn-solid">Enter</button>
+      <p id="gate-error" class="gate-error" hidden>That code didn't work. Check it and try again, or ask your instructor.</p>
+    </form>
+
+    <p class="gate-note">The access code changes periodically. If a link you were given stops working, ask your instructor for the current code.</p>
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Fatma Canan Durgungöz</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  async function sha256Hex(text) {
+    const data = new TextEncoder().encode(text);
+    const digest = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  document.getElementById('gate-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const raw = document.getElementById('gate-code').value;
+    const normalized = raw.trim().toLowerCase().replace(/[\s-]/g, '');
+    if (!normalized) return;
+    const hash = await sha256Hex(normalized);
+    const slug = hash.slice(0, 16);
+    const target = `modules/${slug}/`;
+    // Probe the target before redirecting so a wrong code shows an error instead of a dead link.
+    try {
+      const res = await fetch(target, { method: 'HEAD' });
+      if (res.ok) {
+        window.location.href = target;
+        return;
+      }
+    } catch (err) { /* fall through to error */ }
+    document.getElementById('gate-error').hidden = false;
+  });
+</script>
+
+</body>
+</html>

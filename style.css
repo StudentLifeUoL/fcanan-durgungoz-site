@@ -196,6 +196,64 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.84rem;
 }
 
+/* ---------- access gate (modules page) ---------- */
+
+.gate-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 24px 0 10px;
+  padding: 22px;
+  background: var(--accent-softer);
+  border-radius: 12px;
+}
+.gate-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+  width: 100%;
+}
+.gate-input {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  flex: 1;
+  min-width: 200px;
+}
+.gate-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.btn-solid {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+.btn-solid:hover { opacity: 0.9; }
+
+.gate-error {
+  width: 100%;
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin: 8px 0 0;
+}
+
+.gate-note {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
 /* ---------- timeline (background page) ---------- */
 
 .section-block { margin-bottom: 44px; }
