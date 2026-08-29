@@ -1,0 +1,156 @@
+:root {
+  --ink: #1c1c1c;
+  --ink-soft: #4a4a4a;
+  --line: #e2ddd3;
+  --paper: #fdfcfa;
+  --accent: #7a3b2e;
+  --max: 780px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 48px 0 24px;
+}
+
+.identity h1 {
+  font-size: 2rem;
+  margin: 0 0 8px;
+}
+
+.roles {
+  margin: 0 0 24px;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+nav a {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+nav a:hover { color: var(--accent); }
+
+main {
+  padding: 8px 24px 40px;
+}
+
+section {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line);
+}
+section:last-of-type { border-bottom: none; }
+
+h2 {
+  font-size: 1.4rem;
+  margin: 0 0 20px;
+}
+
+p { margin: 0 0 14px; }
+p:last-child { margin-bottom: 0; }
+
+.placeholder {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timeline li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.degree {
+  font-weight: 600;
+}
+
+.inst {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.pubs {
+  list-style: decimal;
+  margin: 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pub-title {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.pub-meta {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.scholar-link {
+  margin-top: 22px;
+  font-size: 0.95rem;
+}
+
+.site-footer {
+  padding: 28px 0 48px;
+}
+
+.site-footer p {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .site-header { padding: 32px 0 20px; }
+  .identity h1 { font-size: 1.6rem; }
+  section { padding: 28px 0; }
+}
