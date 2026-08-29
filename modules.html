@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <div class="page-shell">
 
   <aside class="sidebar">
@@ -26,7 +28,7 @@
       <a href="projects.html">Projects</a>
       <a href="engagement.html">Public Engagement</a>
       <a href="working-papers.html">Working Papers</a>
-      <a href="modules.html" class="active">Modules</a>
+      <a href="modules.html" class="active" aria-current="page">Modules</a>
       <a href="contact.html">Contact</a>
     </nav>
     <div class="sidebar-contact">
@@ -37,7 +39,7 @@
     </div>
   </aside>
 
-  <main class="main-content">
+  <main class="main-content" id="main-content" tabindex="-1">
     <span class="eyebrow">For Enrolled Students</span>
     <h1>Modules</h1>
     <p class="lede">Teaching materials for current modules are available here to enrolled students. Enter the access code you were given in class.</p>
@@ -46,7 +48,7 @@
       <label for="gate-code" class="gate-label">Access code</label>
       <input type="text" id="gate-code" name="code" class="gate-input" placeholder="e.g. 7a49c-cc182" required>
       <button type="submit" class="btn-solid">Enter</button>
-      <p id="gate-error" class="gate-error" hidden>That code didn't work. Check it and try again, or ask your instructor.</p>
+      <p id="gate-error" class="gate-error" role="alert" aria-live="polite" hidden>That code didn't work. Check it and try again, or ask your instructor.</p>
     </form>
 
     <p class="gate-note">The access code changes periodically. If a link you were given stops working, ask your instructor for the current code.</p>
