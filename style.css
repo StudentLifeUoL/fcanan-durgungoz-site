@@ -99,7 +99,7 @@ h1, h2, h3 {
   height: 168px;
   border-radius: 14px;
   object-fit: cover;
-  object-position: center 12%;
+  object-position: center top;
   display: block;
   box-shadow: 0 2px 10px rgba(28, 28, 28, 0.12);
   border-bottom: 4px solid var(--accent);
