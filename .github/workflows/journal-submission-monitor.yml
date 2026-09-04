@@ -1,0 +1,40 @@
+name: Journal submission monitor
+
+on:
+  schedule:
+    # Every 10 hours (UTC): 00:00, 10:00, 20:00.
+    - cron: "0 */10 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: journal-submission-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check UAD submission status
+        id: check
+        run: python3 automation/journal-monitor/check_submission.py
+
+      - name: Commit updated state if it changed
+        run: |
+          if git diff --quiet -- automation/journal-monitor/state.json; then
+            echo "No change in state.json, nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add automation/journal-monitor/state.json
+          git commit -m "Update journal submission monitor state"
+          git push
